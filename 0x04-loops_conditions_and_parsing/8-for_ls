@@ -2,7 +2,16 @@
 # Displays the contents of the current directory in list format.
 #   Only displays the part of the name after the first dash. 
 
-list=$(ls)
-for i in $list; do
-echo "$i" | cut -d '-' -f2
+# Iterate over files/directories in the current directory
+for file in *; do
+    # Skip hidden files (those starting with a dot)
+    if [[ $file == .* ]]; then
+        continue
+    fi
+
+    # Extract the part of the filename after the first dash 
+    part_after_dash="${file#*-}""
+
+    # Display the modified filename
+    echo "$part_after_dash"
 done
