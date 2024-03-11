@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-#print a string 10 times
-
-x=0
-while [$x -ne 10]
-do
-  echo "Best School"
-  x=$(( x + 1))
-done
