@@ -3,16 +3,19 @@
 #   Displays hours from 0 to 12
 #   Displays minutes from 1 to 59
 
-hour=0
 
-while [ $hour -le 12 ]
-do
-echo "Hour: $hour"
-minute=1
-while [$minute -le 59]
-do
-echo "$minute"
-(( minute++))
-done
-(( hour++))
-done
+hours=0      # Initialize hours to 0
+minutes=1    # Initialize minutes to 1
+
+while [ $hours -lt 13 ]; do  # Outer loop for hours (0 to 12)
+    while [ $minutes -lt 60 ]; do   # Inner loop for minutes (1 to 59)
+
+        # Format output with leading zeros for consistency
+        printf "%02d:%02d\n" $hours $minutes
+
+        minutes=$((minutes + 1))    # Increment minutes
+    done
+
+    hours=$((hours + 1))     # Increment hours
+    minutes=1                # Reset minutes for the next hour
+done | head -n 70            # Display only the first 70 lines
