@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -f "school" ]; then   # Check if the file exists
     echo "school file exists"
@@ -15,4 +15,3 @@ if [ -f "school" ]; then   # Check if the file exists
 else
     echo "school file does not exist" 
 fi
-
