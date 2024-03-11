@@ -2,17 +2,16 @@
 # Displays the contents of the current directory in list format.
 #   Only displays the part of the name after the first dash. 
 
+# Iterate through the files in the current directory
 for file in *; do
-    if [[ $file == .* ]]; then
+    # Check if the file is not a hidden file and is a regular file
+    if [ ! -f "$file" ] || [[ "$file" == .* ]]; then
         continue
     fi
 
-    # Check if the file has a dash
-    if [[ $file == *-* ]]; then
-        part_after_dash="${file#*-}""
-    else
-        part_after_dash="$file"  # No change if no dash
-    fi
+    # Extract the part of the name after the first dash
+    filename=$(echo "$file" | cut -d '-' -f 2-)
 
-    echo "$part_after_dash"
+    # Display the filename in a list format
+    echo "$filename"
 done
