@@ -1,0 +1,32 @@
+
+Explanation
+
+User Request: A user types "www.foobar.com [invalid URL removed]" into their web browser. Their computer needs the IP address associated with that domain name.
+
+Domain Name System (DNS):
+
+Domain Name: The "www.foobar.com [invalid URL removed]" is your domain name, giving the web server a human-friendly address.
+DNS Record: The "www" part is a subdomain. It has an 'A record' in the DNS system mapping it to the server's IP address (8.8.8.8).
+DNS Lookup: The user's browser contacts a DNS server to find the IP address associated with "www.foobar.com [invalid URL removed]".
+Server:
+
+Definition: A server is a powerful computer designed to handle requests and provide services to other computers (clients) over a network.
+Web Communication:
+HTTP Protocol: The server and the user's computer use the HTTP (Hypertext Transfer Protocol) to communicate. The user's browser sends an HTTP request, and the server sends back an HTTP response.
+Web Server (Nginx):
+
+Role:
+Listens for incoming HTTP requests.
+Handles static content (HTML, CSS, images) directly.
+Forwards dynamic requests to the application server.
+Application Server:
+
+Role: Executes your application code (likely written in a language like PHP, Python, etc.). This code generates the dynamic content of your website.
+Database (MySQL):
+
+Role: Stores website data (user information, product listings, blog posts, etc.) in a structured format that the application can query and update.
+Issues with a Single-Server LAMP Infrastructure
+
+SPOF (Single Point of Failure): If the server goes down, your entire website is unavailable. Everything is on one machine.
+Downtime for Maintenance: Deploying updates or performing server maintenance necessitates downtime, making your website temporarily unavailable.
+Cannot Scale: A single server has limited processing power. If you experience a surge in traffic, the server may slow down or become unresponsive.
