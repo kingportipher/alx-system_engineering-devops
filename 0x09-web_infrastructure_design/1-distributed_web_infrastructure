@@ -1,0 +1,22 @@
+* Load Balancer (HAProxy):
+    * Why it was added: Distributes incoming requests across multiple web servers, preventing a single server from being overwhelmed. This improves website responsiveness and availability.
+    * Distribution Algorithm: 
+        * Round Robin: Requests distributed evenly in sequence.
+* Redundant Web Servers:
+    * Why it was added: Provides failover if one web server goes down. Ensures your website remains accessible.
+* Database Primary-Replica Cluster:
+    * How it Works:
+        * Primary (Master): Handles all write operations (updates, inserts, deletes).
+        * Replica (Slave): Synchronizes with the primary, creating a copy of the data. Primarily used for read operations.
+    * Application and the Nodes:
+        * Writes: The application directs write requests to the Primary node.
+        * Reads: The application may read from Replica nodes to distribute load and improve performance.
+Active-Active vs. Active-Passive
+* Active-Active: In an active-active load balancer setup, all servers handle traffic, distributing the load and enhancing performance. 
+* Active-Passive: In an active-passive setup, only one server is active at a time. The passive server acts as a standby or failover, ready to take over if the primary server fails. 
+Remaining Issues
+* SPOF: The load balancer is still a single point of failure. A more advanced setup would use multiple load balancers for further redundancy.
+* Security:
+    * Firewalls: Needed to filter incoming traffic and block malicious requests.
+    * HTTPS: Required to encrypt communication between the user and servers, protecting sensitive data in transit.
+* Monitoring: Implementing monitoring tools to track resource usage (CPU, Memory), alert on potential issues, and gather performance data.
