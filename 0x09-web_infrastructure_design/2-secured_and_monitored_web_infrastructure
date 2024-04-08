@@ -1,0 +1,29 @@
+Explanation of Additions
+* Firewalls:
+    * Purpose: Network security devices that control incoming and outgoing traffic based on rules. They protect your servers from unauthorized access, malicious attacks, and vulnerabilities.
+    * Placement: Strategically placed firewalls protect each tier:
+        * Before the load balancer: Shields the entire infrastructure.
+        * Between load balancer and web servers: Offers an additional layer of security.
+        * Around the database: Provides database-specific protection.
+* SSL Certificate:
+    * Purpose: Enables HTTPS (HTTP over SSL/TLS) for your website, encrypting data communication between users and servers. This protects sensitive information (passwords, credit card details) in transit.
+    * SSL Termination at Load Balancer: The load balancer handles the encryption and decryption of traffic, freeing up web servers for application tasks.
+* Monitoring Clients:
+    * Purpose: Software agents installed on each web server and database server to gather metrics about:
+        * Resource usage (CPU, memory, disk space)
+        * Network traffic
+        * Application errors
+        * Performance indicators (e.g., response times)
+    * Data Collection: Clients send metrics to a central monitoring server.
+* Monitoring Server (Sumologic):
+    * Purpose: Collects, stores, analyzes, and visualizes the data from monitoring clients. Provides dashboards and alerts to proactively identify issues and trends.
+Monitoring Web Server QPS
+* QPS (Queries Per Second): A measure of how many requests your web server handles per second
+* Tools within your monitoring stack (like Sumologic) should be able to track this metric derived from web server logs (e.g., access logs from Nginx).
+* Alerting: You can set thresholds to receive alerts if QPS drops significantly or spikes, indicating potential problems.
+Remaining Issues and Considerations
+* SSL Termination Overhead: SSL termination at the load balancer adds a slight performance overhead. Consider this trade-off between security and raw speed.
+* Single MySQL Primary: Remains a potential bottleneck for writes, depending on your application's write traffic. Scaling writes might involve more complex database setups.
+* Homogeneous Servers:
+    * Pros: Simple to manage.
+    * Cons: Less flexibility if scaling needs become uneven across different tiers (web vs. database).
