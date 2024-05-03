@@ -1,4 +1,6 @@
-package { 'pip3':
+#This file installs flask using puppet
+
+package { 'python3-pip':
   ensure => 'installed',
 }
 
