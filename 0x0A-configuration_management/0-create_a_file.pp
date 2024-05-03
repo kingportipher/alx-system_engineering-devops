@@ -1,8 +1,8 @@
-file  {'create-file':
-  ensure  =>  'present',
-  path    =>  '/tmp/school',
-  mode    =>  '0744',
-  owner   =>  'www-data',
-  group   =>  'www-data',
-  content =>  'I love Puppet',
+#This file creates a file using puppet
+file { '/tmp/school':
+  ensure => present,
+  owner  => 'www-data',
+  group  => 'www-data',
+  mode   => '0744',
+  content => 'I love Puppet',
 }
