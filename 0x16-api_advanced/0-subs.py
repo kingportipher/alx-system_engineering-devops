@@ -1,32 +1,27 @@
 #!/usr/bin/python3
+"""
+Script that queries subscribers on a given Reddit subreddit.
+"""
 
-"""
-Script that queries subscribers on Reddit subreddit
-"""
 import requests
 
-
 def number_of_subscribers(subreddit):
-    """
-    Retrieves the total number of subscribers for a given subreddit.
-
-    Args:
-        subreddit (str): Name of the subreddit to query.
-
-    Returns:
-        int: The number of subscribers, or 0 if the subreddit is invalid.
-    """
-
+    """Return the total number of subscribers on a given subreddit."""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "MyCoolScript/1.0"}  # Replace with your identifier
-
+    headers = {"User-Agent": "myCustomUserAgent/0.1"}
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
-        response.raise_for_status()  # Raise an exception for non-200 status codes
-
-        data = response.json()
-        return data['data']['subscribers']
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            return data.get('data', {}).get('subscribers', 0)
+        elif response.status_code == 301:  # Redirect
+            return 0
+        elif response.status_code == 404:  # Not found
+            return 0
+        else:
+            return 0
+        
+    except requests.RequestException:
         return 0
 
